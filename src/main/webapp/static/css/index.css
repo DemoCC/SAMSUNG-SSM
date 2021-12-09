@@ -1,0 +1,132 @@
+*{
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;	/*隐藏x滚轮 */
+
+}
+
+a{
+	text-decoration: none;
+	line-height: 1;
+}
+
+ul{
+	list-style: none;
+}
+
+/*轮播图*/
+.swiper-item img {
+	width: 99%;
+	height: 500px;
+}
+
+/*手机名列表外盒子*/
+.productListBox{
+	width: 100%;
+	margin-top: 50px;
+	font-size: 16px;
+}
+
+h1{
+	line-height: initial !important;
+}
+
+/*手机名列表的ul样式*/
+.ul_nameList{
+	display: flex;
+	padding: 10px 50px;
+	justify-content: center;
+}
+
+.ul_nameList a{
+	color: #000000;
+}
+
+.ul_nameList a:hover{
+	text-decoration: underline;
+}
+
+/*手机名列表的li样式*/
+.ul_nameList li{
+	font-family: "微软雅黑", serif;
+	margin: 10px 40px;
+	font-weight: 600;
+}
+
+/*列表下的手机图片外盒子*/
+
+.PhoneImgBox{
+	width: 100%;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+/*手机图片*/
+.pImg{
+	width: 30%;
+}
+
+.pImg{
+	transition: all 0.3s;
+}
+
+.pImg:hover{
+	transform: scale(1.05);
+}
+
+.PhoneImgBox h1{
+	font-family: "微软雅黑", serif;
+	margin-top: 20px;
+	font-size: 45px;
+}
+
+.buyBox a{
+	color: #000000;
+	font-size: 15px;
+	font-weight: 800;
+	margin: 0 10px;
+}
+
+.buyBox h1{
+	display: inline;
+}
+
+/*了解更多标签*/
+.more{
+	text-decoration: underline;
+}
+
+/*立即购买标签*/
+.buy{
+	padding: 5px;
+	color: #FFFFFF !important; 
+	background: #000000;
+	border-radius: 15px;
+}
+
+.homeImgBox{
+	margin-top: 200px;
+}
+
+.TVBox{
+	width: 100%;
+	height: 550px;
+	color: #FFFFFF;
+	margin-top: 50px;
+	background-image: url(../img/other/home-gbm.webp);
+	background-size: 120% 150%;
+	background-repeat: no-repeat;
+	background-position: -100px -120px;
+}
+
+.TVBox a{
+	color: #FFFFFF;
+}
+
+/*声明部分*/
+.statement{
+	margin-top: 70px;
+	padding: 0 100px;
+	font-size: 10px;
+	color: #131313c2;
+}

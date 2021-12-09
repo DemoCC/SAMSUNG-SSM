@@ -1,0 +1,53 @@
+/* 链接表格 */
+.tableBox{
+	width: 100%;
+	margin-top: 20px;
+	border: #c8c8c863;
+	font-size: 10px;
+}
+
+.ul_other{
+	padding: 0 20px;
+}
+
+.ul_other li{
+	margin: 10px 10px;
+}
+
+.tableBox h3{
+	margin: 10px 0;
+	font-size: 16px;
+}
+
+.tableBox a{
+	color: #000000c7;
+}
+
+.tableBox a:hover{
+	text-decoration: underline;
+}
+
+.onlineSer{
+	margin-top: -100px;
+}
+
+/* 底部链接 */
+.ul_bottom{
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.ul_bottom li{
+	margin: 20px 20px;
+}
+
+.ul_bottom a{
+	color: #000000ba;
+	font-size: 12px;
+}
+
+.ul_bottom a:hover{
+	text-decoration: underline;
+}

@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /*隐藏滚轮 */
+    font-family: "微软雅黑", serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* 头部 */
+.headerBox {
+    width: 100%;
+    padding: 0 10px;
+}
+
+.logo {
+    width: 100px;
+    height: 60px; /*和头部div一样高,使图片居中*/
+    float: left;
+    padding-left: 15px;
+    margin-right: 70px;
+}
+
+.ul_nav {
+    display: inline;
+    width: 1300px;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 60px;
+}
+
+/*导航栏ul中每个li的间距*/
+.ul_nav li {
+    font-size: 15px;
+    margin: 0 15px;
+    float: left;
+    text-align: center;
+}
+
+.ul_nav a {
+    padding: 3px;
+}
+
+.ul_nav a:hover {
+    padding: 3px;
+    background: #000000;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+}
+
+.navtips {
+    color: black;
+}
+
+.li_galaxy5G {
+    width: initial !important;
+    margin-left: 200px !important;
+}
+
+/*退出标签*/
+.a_logout:hover{
+    background:#FFFFFF !important;
+}
+/*退出图标*/
+.a_logout img{
+    width: 20px;
+    height: initial;
+}

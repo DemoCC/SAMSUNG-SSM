@@ -1,0 +1,64 @@
+body{
+    background: #F7F7F7;
+}
+a{
+    color: #0C0C0C;
+}
+.product_content{
+    padding: 0 10px;
+}
+.itemBox{
+    display: inline-block;
+    width: 270px;
+    height: 310px;
+    margin: 5px 9px;
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 15px;
+    padding: 10px 0;
+    overflow: hidden;
+    transition: transform 0.4s; /*添加动画，过渡时间为0.4s*/
+}
+/*动画*/
+.itemBox:hover{
+    transform: scale(0.95);
+}
+.itemBox div{
+    display: inline;
+}
+.itemBox img{
+    width: 200px;
+    height: 200px;
+}
+.p_pName, .p_color, .p_price{
+    margin: 6px 0;
+}
+.p_pName{
+    font-weight: 600;
+    font-size: 16px;
+}
+.p_price{
+    font-weight: 600;
+    font-size: 17px;
+    color: #146fff;
+}
+
+/*分页盒子*/
+.row{
+    margin-top: 30px;
+}
+/*分页信息*/
+.pageInfo{
+    background: #146fff;
+    color: #FFFFFF;
+    border-radius: 3px;
+    padding: 0 2px;
+}
+
+/*巨幕*/
+.jumbotron{
+    padding: 30px 80px;
+}
+.jumbotron h1{
+    line-height: 100px;
+}

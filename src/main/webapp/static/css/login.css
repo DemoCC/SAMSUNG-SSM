@@ -1,0 +1,60 @@
+/*登录表单盒子*/
+.loginFormDiv{
+    width: 40%;
+    margin: 50px 50px 50px 550px;
+    text-align: center;
+    background: #f7f7f7b5;
+    padding: 40px 0;
+    border-radius: 20px;
+}
+
+/*登录页面背景*/
+.img_bg_login {
+    width: 100%;
+    position: absolute;
+    top: -50px;
+    z-index: -1;
+}
+
+/*form表单*/
+.form-horizontal{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.form-control{
+    line-height: 30px;
+}
+
+/*用户字体图标*/
+.glyphicon-user{
+    font-size: 30px;
+    height: 50px;
+}
+
+/*登录按钮盒子*/
+.div_btn_login{
+    margin-top: 25px;
+}
+
+/*登录按钮*/
+.btn-primary{
+    width: 150px;
+}
+
+/*去注册盒子*/
+.div_goRegister{
+    width: 200px;
+    height: auto;
+    margin: 10px auto 0 auto;
+}
+
+/*去注册文字图标*/
+.glyphicon-triangle-right{
+    overflow: hidden;
+}
+
+/*底部说明*/
+footer{
+    text-align:center ;
+}
