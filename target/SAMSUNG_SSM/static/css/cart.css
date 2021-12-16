@@ -128,6 +128,11 @@ ul {
     cursor: pointer;
 }
 
+/*确定和取消删除按钮*/
+.layui-layer-btn0, .layui-layer-btn1 {
+    line-height: initial !important;
+}
+
 #clearAll, #settlement {
     width: 100px;
     height: 35px;

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.klx.samsung.domain.Product;
 import com.klx.samsung.domain.User;
 import com.klx.samsung.service.ProductService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -217,6 +218,28 @@ public class ProductManager {
         } else {
             return "fail";
         }
+    }
+
+    /**
+     * 多条件查询
+     *
+     * @param network  产品名
+     * @param price 价格
+     * @return 产品纪录
+     */
+    @RequestMapping("/getProductByMore")
+    public String getProductByMore(@Param("network") String network, @Param("price") BigDecimal price, @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber, Model model) {
+        //分页，每页显示5个
+        PageHelper.startPage(pageNumber, 5);
+
+        Product product = new Product();
+        product.setNetwork(network);
+        product.setPrice(price);
+        List<Product> productList = productService.getProductByMore(product);
+        System.out.println(productList);
+        PageInfo pageInfo = new PageInfo(productList, 5);
+        model.addAttribute("pageInfo", pageInfo);
+        return "admin/productList_query";
     }
 
 }

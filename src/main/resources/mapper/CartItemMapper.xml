@@ -15,6 +15,7 @@
             <result column="url" property="url"/>
         </association>
     </resultMap>
+    <!--    获取购物车列表-->
     <select id="getCartItems" resultType="com.klx.samsung.domain.CartItem" resultMap="cartItemtMap">
         select c.id,
                c.uid,
@@ -31,4 +32,24 @@
                  join tb_product as p on p.id = c.pid
         where u.id = #{id}
     </select>
+
+    <!-- 加入购物车-->
+    <insert id="addCart" parameterType="com.klx.samsung.domain.CartItem" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_cartItem(uid, pid, quantity, totalMoney)
+            value (#{uid}, #{pid}, #{quantity},#{totalMoney})
+    </insert>
+
+    <!--  删除购物车中的某个商品-->
+    <delete id="deleteCartItem" parameterType="Integer">
+        delete
+        from tb_cartItem
+        where id = #{id}
+    </delete>
+
+    <!-- 清空某用户的购物车-->
+    <delete id="clearCart" parameterType="Integer">
+        delete
+        from tb_cartItem
+        where uid = #{uid}
+    </delete>
 </mapper>

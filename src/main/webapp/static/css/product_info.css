@@ -67,7 +67,7 @@ body {
 }
 
 /*购买数量*/
-.span_quantity {
+.quantity {
     display: inline-block;
     width: 60px;
     height: initial;

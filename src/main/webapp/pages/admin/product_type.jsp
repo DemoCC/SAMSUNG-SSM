@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 阚理想
+  User: KLX
   Date: 2021-6-17
   Time: 下午 5:19
   To change this template use File | Settings | File Templates.
@@ -295,11 +295,11 @@
                     type: 'POST',
                     success: function (res) {
                         if (res === "success") {
-                            layer.msg(
-                                "删除成功", {icon: 1, time: 500},
+                            layer.msg("删除成功", {icon: 1, time: 500},
                                 function () {
                                     window.location.replace("${webapp}/productManager/" + productType + '?pageNumber=' + pageNumber);
-                                });
+                                }
+                            );
                         } else if (res === "fail") {
                             layer.msg("删除失败", {icon: 2, time: 500});
                         }
@@ -397,7 +397,7 @@
                         }
                     );
                 } else {
-                    layer.msg('添加失败', {icon: 2, time: 1000});
+                    layer.msg('更新失败', {icon: 2, time: 1000});
                 }
             }
         });

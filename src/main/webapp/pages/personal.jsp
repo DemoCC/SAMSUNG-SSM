@@ -1,6 +1,6 @@
 <%@ page import="com.klx.samsung.domain.User" %><%--
   Created by IntelliJ IDEA.
-  User: 阚理想
+  User: KLX
   Date: 2021-5-30
   Time: 上午 12:07
   To change this template use File | Settings | File Templates.

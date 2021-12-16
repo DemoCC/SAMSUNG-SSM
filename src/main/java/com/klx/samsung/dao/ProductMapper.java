@@ -55,4 +55,11 @@ public interface ProductMapper {
      */
     int updateProduct(Product product);
 
+    /**
+     * 多条件查询
+     * @param product 产品
+     * @return 查询的纪录
+     */
+    List<Product> getProductByMore(Product product);
+
 }

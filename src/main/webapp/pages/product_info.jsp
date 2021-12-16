@@ -40,22 +40,22 @@
                 <span class="span_address">${sessionScope.userInfo.address}</span>
                 <div class="buyNumBox">
                     <div id="span_add" class="span_add" onclick="addNum();">+</div>
-                    <div id="span_quantity" class="span_quantity">1</div>
+                    <div id="quantity" class="quantity">1</div>
                     <div id="span_reduce" class="span_reduce" onclick="reduceNum();">-</div>
                 </div>
-                <h4 class="p_totalMoney">总价：</h4>
+                <h4>总价：</h4>
                 <div id="totalMoney" class="totalMoney">${product[0].price}</div>
+                <%--隐藏数据--%>
+                <input id="input_uid" type="hidden" value="${sessionScope.userInfo.id}">
+                <input id="input_pid" type="hidden" value="${product[0].id}">
                 <c:choose>
                     <c:when test="${sessionScope.userInfo == null}">
                         <a href="${webapp}/pages/login.jsp">您还没有登录，请登录</a>
                     </c:when>
                     <c:otherwise>
-                        <button id="btn_addCart">加入购物车</button>
+                        <button id="btn_addCart" onclick="addToCart();">加入购物车</button>
                     </c:otherwise>
                 </c:choose>
-                <%--隐藏数据--%>
-                <input id="span_uid" type="hidden">
-                <input id="span_pid" type="hidden" value="${product[0].id}">
             </div>
         </div>
     </div>
@@ -67,46 +67,38 @@
         $("#header1").load("${webapp}/pages/header.jsp");
     });
 
-    $("#btn_addCart").click(function (quantity, uid, pid) {
-        layer.msg(
-            "老师说可以不用写那么多！", {
-            offset: 'auto',    //位置，弹出在顶部
-            // icon: 2,    //图标
-            anim: 1     //动画
-        });
-        return false;
-
-        quantity = $("#span_quantity").text();
-        uid = $("#span_uid").text();
-        pid = $("#span_pid").text();
-
+    //点击添加购物车
+    function addToCart() {
+        const uid = $("#input_uid").val();
+        const pid = $("#input_pid").val();
+        const quantity = $("#quantity").text();
+        const totalMoney = $("#totalMoney").text();
         $.ajax({
-            url: '',
-            type: 'post',
+            url: '${webapp}/myCart/addToCart',
+            type: 'POST',
             data: {
-                quantity: quantity,
-                uid: uid,
-                pid: pid
+                "uid": uid,
+                "pid": pid,
+                "quantity": quantity, //购买数量
+                "totalMoney": totalMoney
             },
-            dataType: 'json',
-            success: function (data) {
-                if (data === 'SUCCESS') {
+            success: function (res) {
+                if (res === 'success') {
                     layer.msg(
                         '添加成功', {icon: 1, time: 1000}
                     )
                 }
-                if (data === 'FAILED') {
+                if (res === 'fail') {
                     layer.msg(
                         "添加失败", {icon: 2, time: 1000}
-                    )
+                    );
                 }
             }
-        })
-    })
+        });
+    }
 
-    const obj = $("#span_quantity");
+    const obj = $("#quantity");
     const obj2 = $("#totalMoney");
-
     let quantity = parseInt(obj.text());
     let totalMoney = parseInt(obj2.text());
 

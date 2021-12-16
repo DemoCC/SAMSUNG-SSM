@@ -78,18 +78,16 @@
                                 </div>
                                 <div class="layui-col-md3">
                                     <div class="grid-demo grid-demo-bg">
-                                        <span onclick="deleteItem();" class="a_delete">删除</span>
+                                        <span onclick="deleteItem(${cartItem.id});" class="a_delete">删除</span>
                                     </div>
                                 </div>
                                     <%--隐藏的id--%>
-                                    <%--                                <span style="display: none" id="itemId_span">${cart_item.id}</span>--%>
-                                    <%--                                <span style="display: none" id="uid_span">${cart_item.uid}</span>--%>
-                                    <%--                                <span style="display: none" id="pid_span">${cart_item.pid}</span>--%>
+                                <span style="display: none" id="val_uid">${sessionScope.userInfo.id}</span>
                             </div>
                         </div>
                     </c:forEach>
                     <div class="settlementFoot">
-                        <span id="clearAll">清空购物车</span>
+                        <span id="clearAll" onclick="clearCart(${sessionScope.userInfo.id});">清空购物车</span>
                         <span>
                         商品总数量：<span id="productTotal">${productTotal}</span>
                     </span>
@@ -127,79 +125,57 @@
         const uid = $("#uid_span").text();
     });
 
-    //删除购物车item
-    function deleteItem() {
-        layer.msg('不想写了', {
-            offset: 'atuo',
-            icon: 2,
-            anim: 6
-        });
-        <%--layer.confirm(--%>
-        <%--    '确定要删除吗？',--%>
-        <%--    {icon: 3, title: "删除商品"},--%>
-        <%--    function () {--%>
-        <%--        const itemId = $("#itemId_span").text();--%>
-        <%--        $.ajax({--%>
-        <%--            url: '/SAMSUNG_WEB/cartServlet?action=deleteCartItem',--%>
-        <%--            type: 'get',--%>
-        <%--            async: true,--%>
-        <%--            data: {--%>
-        <%--                itemId: itemId--%>
-        <%--            },--%>
-        <%--            dataType: 'json',--%>
-        <%--            success: function (data) {--%>
-        <%--                if (data === "SUCCESS") {--%>
-        <%--                    layer.msg('删除成功', {icon: 1, time: 400},--%>
-        <%--                        function () {--%>
-        <%--                            window.location.replace("/SAMSUNG_WEB/cartServlet?action=queryCart&uid=${sessionScope.user.id}")--%>
-        <%--                        })--%>
-        <%--                }--%>
-        <%--                if (data === "FAILED") {--%>
-        <%--                    layer.msg('删除失败', {icon: 2, time: 400});--%>
-        <%--                    window.location.replace("/SAMSUNG_WEB/cartServlet?action=queryCart&uid=${sessionScope.user.id}")--%>
-        <%--                }--%>
-        <%--            }--%>
-        <%--        });--%>
-        <%--    });--%>
+    //删除购物车商品
+    function deleteItem(itemId) {
+        layer.confirm(
+            '确定要删除吗？',
+            {icon: 3, title: "删除商品"},
+            function () {
+                $.ajax({
+                    url: '${webapp}/myCart/deleteCartItem?id=' + itemId,
+                    type: 'post',
+                    async: true,
+                    success: function (res) {
+                        if (res === "success") {
+                            layer.msg('删除成功', {icon: 1, time: 400},
+                                function () {
+                                    window.location.replace("${webapp}/myCart/${sessionScope.userInfo.id}");
+                                });
+                        }
+                        if (res === "fail") {
+                            layer.msg('删除失败', {icon: 2, time: 400});
+                        }
+                    }
+                });
+            });
     }
 
     //清空购物车
-    $("#clearAll").click(function () {
-        layer.msg('不想写了', {
-            offset: 'atuo',
-            icon: 2,
-            anim: 6
-        });
-        // layer.confirm(
-        //     '确定要清空吗？？？',
-        //     {icon: 3, title: '清空购物车'},
-        //     function () {
-        //         $.ajax({
-        //             url: '/SAMSUNG_WEB/cartServlet?action=clearCart',
-        //             type: 'post',
-        //             data: {
-        //                 uid: uid
-        //             },
-        //             dataType: 'json',
-        //             success: function (data) {
-        //                 if (data === "SUCCESS") {
-        //                     layer.msg(
-        //                         '清空成功', {icon: 1, time: 500},
-        //                         function () {
-        //                             window.location.replace("/SAMSUNG_WEB/cartServlet?action=queryCart");
-        //                         }
-        //                     );
-        //                 } else {
-        //                     layer.msg("清空失败", {icon: 2, time: 500},
-        //                         function () {
-        //                             window.location.replace("/SAMSUNG_WEB/cartServlet?action=queryCart");
-        //                         })
-        //                 }
-        //             }
-        //         });
-        //         layer.closeAll()
-        //     });
-    });
+    function clearCart(uid) {
+        layer.confirm(
+            '确定要清空吗？',
+            {icon: 3, title: '清空购物车'},
+            function () {
+                $.ajax({
+                    url: '${webapp}/myCart/clearCart?uid=' + uid,
+                    type: 'post',
+                    success: function (res) {
+                        if (res === "success") {
+                            layer.msg(
+                                '清空成功', {icon: 1, time: 500},
+                                function () {
+                                    window.location.replace("${webapp}/myCart/" + uid);
+                                }
+                            );
+                        } else {
+                            layer.msg("清空失败", {icon: 2, time: 500});
+                        }
+                    }
+                });
+                layer.closeAll()
+            });
+    }
+
     //结算
     const totalMoney = $("#totalMoney").text();
     $("#settlement").click(function () {

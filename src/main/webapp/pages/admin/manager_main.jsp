@@ -87,6 +87,17 @@
                 </div>
             </div>
             <div class="layui-body">
+                <div id="queryInfo">
+                    <form method="get">
+                        <div class="layui-input-inline">
+                            <input type="text" name="type" id="input_network" placeholder="请输入网络类型" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="number" name="price" id="input_price" placeholder="请输入价格" class="layui-input">
+                        </div>
+                        <input type="button" class="layui-btn" id="btn_query" onclick="getProductByMore();" value="查询"/>
+                    </form>
+                </div>
                 <iframe name="iframe" id="iframe" src="${webapp}/userManager/role/0"></iframe>
             </div>
             <div class="layui-footer">
@@ -133,7 +144,7 @@
         iframe.src = "${webapp}/productManager/手机";
     }
 
-    //查询穿戴设备
+    //查询穿戴产品
     function getWear() {
         iframe.src = "${webapp}/productManager/穿戴";
     }
@@ -143,12 +154,12 @@
         iframe.src = "${webapp}/productManager/家电";
     }
 
-    //查询办公设备
+    //查询办公产品
     function getOffice() {
         iframe.src = "${webapp}/productManager/办公";
     }
 
-    //查询办公设备
+    //查询其他产品
     function getOther() {
         iframe.src = "${webapp}/productManager/其他";
     }
@@ -156,6 +167,42 @@
     //去添加产品
     function addProduct() {
         iframe.src = "${webapp}/pages/admin/product_add.jsp";
+    }
+
+    //点击多条件查询的查询按钮
+    function getProductByMore() {
+        if (!checking_form()) {
+            return false;
+        }
+        const network = $("#input_network").val();
+        const price = $("#input_price").val();
+        iframe.src = "${webapp}/productManager/getProductByMore?network=" + network + "&price=" + price;
+    }
+
+    //表单数据校验
+    function checking_form() {
+        const type = $("#input_network").val();
+        const price = $("#input_price").val();
+        if ((type === "" || type === null) || (price === "" || price === null)) {
+            showCheckMsg("#input_network", "error", "请输入查询条件");
+            return false;
+        }
+        return true;
+    }
+
+    //显示校验结果
+    function showCheckMsg(ele, status, msg) {
+        $(ele).parent().removeClass("layui-form-danger layui-form-checked");    //清空表单样式
+        if ("success" === status) {      //如果校验状态为成功
+            $(ele).parent().addClass("layui-form-checked");
+        } else if ("error" === status) {
+            $(ele).addClass("layui-form-danger");
+            layer.msg(msg, {
+                offset: 't',    //位置，弹出在顶部
+                // icon: 2,    //图标
+                anim: 6     //动画
+            });
+        }
     }
 
     layui.use(['element', 'layer', 'util'], function () {

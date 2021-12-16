@@ -32,10 +32,12 @@ a{
 }
 .p_pName, .p_color, .p_price{
     margin: 6px 0;
+    color: #0C0C0C;
 }
 .p_pName{
     font-weight: 600;
     font-size: 16px;
+    color: #0C0C0C;
 }
 .p_price{
     font-weight: 600;

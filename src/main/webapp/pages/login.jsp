@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 阚理想
+  User: KLX
   Date: 2021-5-29
   Time: 下午 10:32
   To change this template use File | Settings | File Templates.
@@ -15,13 +15,16 @@
 <head>
     <meta charset="utf-8">
     <title>登录账户</title>
+    <script type="text/javascript" src="${webapp}/static/js/jquery.js"></script>
+    <script type="text/javascript" src="${webapp}/static/layui/layui.js"></script>
+    <script type="text/javascript" src="${webapp}/static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${webapp}/static/layui/css/layui.css" type="text/css"/>
     <link rel="stylesheet" href="${webapp}/static/css/login.css" type="text/css"/>
     <link rel="stylesheet" href="${webapp}/static/css/header.css" type="text/css"/>
     <link rel="stylesheet" href="${webapp}/static/css/link_list.css" type="text/css"/>
     <link rel="shortcut icon" href="${webapp}/static/img/navhead/samsung_logo2.png" type="text/css"/>
     <link rel="stylesheet" href="${webapp}/static/bootstrap-3.4.1/css/bootstrap.min.css" type="text/css">
-    <script type="text/javascript" src="${webapp}/static/js/jquery.js"></script>
-    <script type="text/javascript" src="${webapp}/static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <img src="${webapp}/static/img/other/login_bg.jpg" alt="图片加载失败" class="img_bg_login">
@@ -89,14 +92,26 @@
             },
             success: function (res) {
                 if (res === "success") {
-                    window.location.href = "${webapp}/";
-                    reset_form("#form_login");
+                    layer.msg('登录成功', {
+                            offset: 'auto',
+                            icon: 1,
+                            anim: 5,
+                            time: 800
+                        },
+                        function () {
+                            window.location.href = "${webapp}/";
+                            reset_form("#form_login");
+                        });
                 } else {
                     $("#input_name").removeClass("has-success");
                     $("#input_password").removeClass("has-success");
                     $("#input_name").parent().addClass("has-error");
                     $("#input_password").parent().addClass("has-error");
-                    $("#login_msg").text("用户名或密码错误");
+                    // $("#login_msg").text("用户名或密码错误");
+                    layer.msg('用户名或密码错误', {
+                        offset: 't',
+                        anim: 6
+                    });
                 }
             }
         });
@@ -127,14 +142,16 @@
     //显示校验结果
     function showCheckMsg(ele, status, msg) {
         $(ele).parent().removeClass("has-success has-error");    //清空表单样式
-        $(ele).next("span").text("")    //设置相邻span标签的提示文字为空
 
         if ("success" === status) {      //如果校验状态为成功
             $(ele).parent().addClass("has-success");
-            $(ele).next("span").text(msg);
         } else if ("error" === status) {
             $(ele).parent().addClass("has-error");
-            $(ele).next("span").text(msg);
+            layer.msg(msg, {
+                offset: 't',    //位置，弹出在顶部
+                // icon: 2,    //图标
+                anim: 6     //动画
+            });
         }
     }
 

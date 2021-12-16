@@ -11,7 +11,7 @@
         </foreach>
     </select>
 
-    <!-- 根据类型查询产品  -->
+    <!-- 根据产品类型查询产品  -->
     <select id="getProductByType" resultType="com.klx.samsung.domain.Product">
         select *
         from tb_product
@@ -51,5 +51,14 @@
             url     = #{url}
         where id = #{id}
     </update>
+
+    <!-- 多条件查询-->
+    <select id="getProductByMore" parameterType="com.klx.samsung.domain.Product"
+            resultType="com.klx.samsung.domain.Product">
+        select *
+        from tb_product
+        where network = #{network}
+          and price = #{price}
+    </select>
 
 </mapper>

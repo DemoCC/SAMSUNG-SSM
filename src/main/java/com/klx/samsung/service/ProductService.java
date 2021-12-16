@@ -70,4 +70,14 @@ public class ProductService {
     public int updateProduct(Product product){
         return productMapper.updateProduct(product);
     }
+
+    /**
+     * 多条件查询
+     * @param product 产品属性
+     * @return 查询结果
+     */
+    public List<Product> getProductByMore(Product product){
+        return productMapper.getProductByMore(product);
+    }
+
 }

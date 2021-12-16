@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 阚理想
+  User: KLX
   Date: 2021-6-7
   Time: 下午 3:52
   To change this template use File | Settings | File Templates.
@@ -163,8 +163,8 @@
             $("#input_price").focus();
             return false;
         }
-        if (price.toString().substring(0, 1) === "0" || price.length > 5) {
-            showCheckMsg("#input_price", "error", "价格不能超过5位数,不能以0开头");
+        if (price.toString().substring(0, 1) === "0" || price.toString().substring(0, 1) === "-" || price.length > 5) {
+            showCheckMsg("#input_price", "error", "价格不能以为负或以0开头，不能超过5位数");
             $("#input_price").focus();
             return false;
         } else {
@@ -189,7 +189,7 @@
             $("#input_stock").focus();
             return false;
         }
-        if (stock.toString().substring(0, 1) === "0") {
+        if (stock.toString().substring(0, 1) === "0" || price.toString().substring(0, 1) === "-") {
             showCheckMsg("#input_stock", "error", "不能以0开头");
             $("#input_stock").focus();
             return false;
