@@ -1,0 +1,113 @@
+* {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/*板块左边部分*/
+.grid-demo-bg1 {
+    text-align: center;
+}
+
+/*产品大图片*/
+.grid-demo-bg1 img {
+    width: 400px;
+    height: 400px;
+    margin-top: 50px;
+}
+
+/*板块右边部分*/
+.grid-demo-bg2 {
+    text-align: left;
+}
+
+/*商品名字*/
+.grid-demo-bg2 h1 {
+    font-family: 方正兰亭大黑简体, serif;
+    margin-top: 30px;
+    line-height: initial;
+}
+
+/*参数标题*/
+.grid-demo-bg2 h4 {
+    font-weight: 600;
+    line-height: initial;
+    margin-top: 15px;
+}
+
+/*参数外框*/
+.grid-demo-bg2 p {
+    width: 120px;
+    height: initial;
+    line-height: 1;
+    padding: 10px 5px;
+    margin-top: 5px;
+    border: 1px solid #1e90ff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/*地址*/
+.span_address{
+    font-weight: 200;
+    font-size: 18px;
+}
+
+/*添加数量的外盒子*/
+.buyNumBox {
+    width: 200px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+/*购买数量*/
+.quantity {
+    display: inline-block;
+    width: 60px;
+    height: initial;
+    line-height: 1.3;
+    border-radius: 10px;
+    border: 1px solid #c0c4cc;
+    text-align: center;
+    /*overflow: hidden;*/
+}
+
+/*购买数量的加号和减号*/
+.span_add, .span_reduce {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    color: #6b6b6b;
+}
+
+/*价格*/
+.totalMoney {
+    margin-top: 10px;
+    color: #1e90ff;
+    font-size: 27px;
+    font-family: Bahnschrift, serif;
+    font-weight: 700;
+    margin-left: 15px;
+}
+
+/*添加购物车*/
+#btn_addCart {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    background: #4169E1;
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+    left: 150px;
+    bottom: 40px;
+}

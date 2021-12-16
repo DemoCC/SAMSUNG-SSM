@@ -1,0 +1,30 @@
+#iframe {
+    width: 97%;
+    height: 90%;
+    margin: 10px 10px;
+    border: none;
+    overflow-x: hidden;
+}
+
+#queryInfo {
+    width: 60%;
+    height: 25px;
+    margin: 5px 200px;
+}
+
+.layui-form-label{
+    margin-left: 100px;
+}
+
+/*搜索框*/
+.layui-input {
+    width: 150px;
+}
+
+.layui-form {
+    display: inline;
+}
+
+.layui-nav-item {
+    cursor: pointer;
+}

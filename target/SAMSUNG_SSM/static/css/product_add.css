@@ -1,0 +1,13 @@
+body{
+    text-align: center;
+    overflow: hidden;
+}
+#form_addProduct{
+    margin-top: 15px;
+}
+.btn-primary{
+    position: relative;
+    width: 100px;
+    bottom: 50px;
+    left: 300px;
+}

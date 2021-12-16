@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.klx.samsung.dao.UserMapper">
+
+    <!-- 根据id查询用户-->
+    <select id="getUserById" parameterType="Integer" resultType="com.klx.samsung.domain.User">
+        select *
+        from tb_user
+        where id = #{id}
+    </select>
+
+    <!-- 通过用户名和密码查询用户（不带购物车信息） -->
+    <select id="getUserByNameAndPass" resultType="com.klx.samsung.domain.User">
+        select *
+        from tb_user
+        where name = #{name}
+          and password = #{password}
+    </select>
+
+    <!--根据角色查询用户-->
+    <select id="getUserByRole" resultType="com.klx.samsung.domain.User" parameterType="Integer">
+        select *
+        from tb_user
+        where role = #{role}
+    </select>
+
+    <!--根据用户名查询用户-->
+    <select id="getUserByName" resultType="com.klx.samsung.domain.User" parameterType="String">
+        select *
+        from tb_user
+        where name = #{name}
+    </select>
+
+    <update id="updateUser" parameterType="com.klx.samsung.domain.User" keyProperty="id" useGeneratedKeys="true">
+        update tb_user
+        set name       = #{name},
+            password   = #{password},
+            sex        = #{sex},
+            tel        = #{tel},
+            birth      = #{birth},
+            address    = #{address},
+            headImgUrl = #{headImgUrl}
+        where id = #{id}
+    </update>
+
+    <!-- 查询所有用户-->
+    <select id="getAllUser" resultType="com.klx.samsung.domain.User">
+        select *
+        from tb_user
+    </select>
+
+    <sql id="WithCartItem_Column_List">
+        u
+        .
+        id
+        , u.name, u.password, u.sex, u.tel, u.birth, u.address, u.headImgUrl, u.role
+        , c.id, c.pid, c.quantity, c.totalMoney
+        , p.id, p.name, p.price, p.color, p.type, p.network, p.stock, p.url
+    </sql>
+    <!-- UserWithCartItemMap-->
+    <resultMap id="UserWithCartItemMap" type="com.klx.samsung.domain.User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="tel" property="tel"/>
+        <result column="birth" property="birth"/>
+        <result column="address" property="address"/>
+        <result column="headImgUrl" property="headImgUrl"/>
+        <result column="isAdmin" property="isAdmin"/>
+        <collection property="cartItemList" javaType="java.util.List" ofType="com.klx.samsung.domain.CartItem"
+                    resultMap="CartItemMap"/>
+    </resultMap>
+    <resultMap id="CartItemMap" type="com.klx.samsung.domain.CartItem">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="pid" property="pid"/>
+        <result column="quantity" property="quantity"/>
+        <result column="totalMoney" property="totalMoney"/>
+        <association property="product" javaType="com.klx.samsung.domain.Product">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="price" property="price"/>
+            <result column="color" property="color"/>
+            <result column="type" property="type"/>
+            <result column="network" property="network"/>
+            <result column="stock" property="stock"/>
+            <result column="url" property="url"/>
+        </association>
+    </resultMap>
+    <!--     通过用户名和密码查询用户（带购物车信息） -->
+    <select id="getUserByNameAndPassWhitCartItem" resultType="com.klx.samsung.domain.User"
+            resultMap="UserWithCartItemMap">
+        select
+        <include refid="WithCartItem_Column_List"/>
+        from tb_user as u
+        left join tb_cartitem as c on u.id = c.uid
+        left join tb_product as p on c.pid = p.id
+        where u.name=#{name} and u.password = #{password}
+    </select>
+
+    <!-- 添加用户-->
+    <insert id="addUser" parameterType="com.klx.samsung.domain.User" keyProperty="id" useGeneratedKeys="true">
+        insert into tb_user(name, password, sex, tel, birth, address, headImgUrl)
+            value (#{name}, #{password}, #{sex},#{tel},#{birth},#{address},#{headImgUrl})
+    </insert>
+
+    <!-- 删除用户-->
+    <delete id="deleteUserById" parameterType="Integer">
+        delete
+        from tb_user
+        where id = #{id}
+    </delete>
+
+    <!-- 设置用户权限-->
+    <update id="setRole" parameterType="Integer">
+        update tb_user
+        set role = #{role}
+        where id = #{id}
+    </update>
+
+</mapper>
